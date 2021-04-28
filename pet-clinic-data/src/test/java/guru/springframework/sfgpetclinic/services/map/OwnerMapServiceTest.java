@@ -17,8 +17,10 @@ class OwnerMapServiceTest {
 
     @BeforeEach
     void setUp() {
+        // No need to use Mockito, can simply instantiate the map
         ownerMapService = new OwnerMapService(new PetTypeMapService(), new PetMapService());
 
+        // Populate the map with one Owner object using builder pattern
         ownerMapService.save(Owner.builder().id(ownerId).lastName(lastName).build());
     }
 
@@ -38,19 +40,15 @@ class OwnerMapServiceTest {
 
     @Test
     void saveExistingId() {
-        Long id = 2L;
-
+        long id = 2L;
         Owner owner2 = Owner.builder().id(id).build();
-
         Owner savedOwner = ownerMapService.save(owner2);
 
         assertEquals(id, savedOwner.getId());
-
     }
 
     @Test
     void saveNoId() {
-
         Owner savedOwner = ownerMapService.save(Owner.builder().build());
 
         assertNotNull(savedOwner);
@@ -76,9 +74,8 @@ class OwnerMapServiceTest {
         Owner smith = ownerMapService.findByLastName(lastName);
 
         assertNotNull(smith);
-
         assertEquals(ownerId, smith.getId());
-
+        assertEquals(lastName, smith.getLastName());
     }
 
     @Test

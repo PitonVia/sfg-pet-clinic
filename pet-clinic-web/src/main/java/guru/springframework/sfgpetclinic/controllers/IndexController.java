@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class IndexController {
-
+    // all possible parameters that can match
     @RequestMapping({"", "/", "index", "index.html"})
     public String index(){
-
+        // return will point to index.html under templates folder
         return "index";
     }
 

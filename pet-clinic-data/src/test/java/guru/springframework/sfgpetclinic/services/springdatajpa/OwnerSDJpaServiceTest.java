@@ -20,19 +20,19 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+// Had to add Mockito dependency for the Extension class to work
 @ExtendWith(MockitoExtension.class)
 class OwnerSDJpaServiceTest {
-
     public static final String LAST_NAME = "Smith";
+
     @Mock
     OwnerRepository ownerRepository;
-
     @Mock
     PetRepository petRepository;
-
     @Mock
     PetTypeRepository petTypeRepository;
 
+    // This annotation initiates the service (calls constructor) using the mocked repositories
     @InjectMocks
     OwnerSDJpaService service;
 
@@ -40,7 +40,7 @@ class OwnerSDJpaServiceTest {
 
     @BeforeEach
     void setUp() {
-        returnOwner = Owner.builder().id(1l).lastName(LAST_NAME).build();
+        returnOwner = Owner.builder().id(1L).lastName(LAST_NAME).build();
     }
 
     @Test
@@ -86,7 +86,6 @@ class OwnerSDJpaServiceTest {
         assertNull(owner);
     }
 
-
     @Test
     void save() {
         Owner ownerToSave = Owner.builder().id(1L).build();
@@ -104,7 +103,6 @@ class OwnerSDJpaServiceTest {
     void delete() {
         service.delete(returnOwner);
 
-        //default is 1 times
         verify(ownerRepository, times(1)).delete(any());
     }
 
@@ -112,6 +110,7 @@ class OwnerSDJpaServiceTest {
     void deleteById() {
         service.deleteById(1L);
 
+        //if times not specified, by default it is 1 times
         verify(ownerRepository).deleteById(anyLong());
     }
 }

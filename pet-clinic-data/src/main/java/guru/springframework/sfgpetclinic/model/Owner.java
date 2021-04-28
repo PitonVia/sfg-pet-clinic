@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@Entity
+@Entity // this is marked as JPA entity
 @Table(name = "owners")
 public class Owner extends Person {
 
@@ -41,6 +41,8 @@ public class Owner extends Person {
     @Column(name = "telephone")
     private String telephone;
 
+    // cascade All means if we delete owner, it will delete associated pets as well
+    // mappedBy owner refers to the field's name in Pet class
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 

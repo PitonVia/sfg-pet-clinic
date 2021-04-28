@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Created by jt on 7/22/18.
  */
+// When at class level, RequestMapping prefixes to the path specified at method levels
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {

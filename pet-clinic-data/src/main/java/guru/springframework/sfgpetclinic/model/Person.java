@@ -15,6 +15,8 @@ import javax.persistence.MappedSuperclass;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+// @MappedSuperclass marks class as super parent class for JPA so this class
+// will NOT be created in db, but other classes will inherit from it.
 @MappedSuperclass
 public class Person extends BaseEntity {
 

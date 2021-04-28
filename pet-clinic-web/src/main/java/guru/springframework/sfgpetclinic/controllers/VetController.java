@@ -26,7 +26,7 @@ public class VetController {
     public String listVets(Model model){
 
         model.addAttribute("vets", vetService.findAll());
-
+        // return will point to index.html under templates/vets folder
         return "vets/index";
     }
 

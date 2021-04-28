@@ -18,10 +18,13 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+// @MappedSuperclass marks class as super parent class for JPA so this class
+// will NOT be created in db, but other classes will inherit from it.
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
     @Id
+    // generates id by db ok, since it can be used for H2 and mySql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
